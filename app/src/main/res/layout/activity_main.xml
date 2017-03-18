@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.loonggg.lib.DragerViewLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drager_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#654321"
+        android:padding="10dp"
+        android:text="我是炸弹"
+        android:textColor="#ffffff" />
+
+    <fragment
+        android:id="@+id/one"
+        android:name="com.loonggg.dragerviewlayout.OneFragment"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/btn" />
+
+    <fragment
+        android:id="@+id/three"
+        android:name="com.loonggg.dragerviewlayout.ThreeFragment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/btn"
+        android:layout_toRightOf="@id/one" />
+
+    <fragment
+        android:name="com.loonggg.dragerviewlayout.TwoFragment"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_below="@id/one" />
+</com.loonggg.lib.DragerViewLayout>
