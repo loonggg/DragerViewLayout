@@ -9,20 +9,20 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.loonggg.lib.util.SharedPreferencesUtil;
+
 /**
  * Created by loonggg on 2017/3/18.
  */
 
 public class DragerViewLayout extends RelativeLayout {
     private ViewDragHelper viewDragHelper;
-    private SharedPreferences savesetting;
-    private SharedPreferences.Editor spEditor;
     private boolean drager = true;
+    private Context mContext;
 
     public DragerViewLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        savesetting = context.getSharedPreferences("drager_save", 0);
-        spEditor = savesetting.edit();
+        mContext = context;
         if (drager) {
             viewDragHelper = ViewDragHelper.create(this, 1.0f, new ViewDragHelper.Callback() {
                 @Override
@@ -68,8 +68,7 @@ public class DragerViewLayout extends RelativeLayout {
                 @Override
                 public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
                     super.onViewPositionChanged(changedView, left, top, dx, dy);
-                    spEditor.putString(getChildIndex(changedView) + "", left + "#" + top);
-                    spEditor.commit();
+                    SharedPreferencesUtil.saveData(mContext, getChildIndex(changedView) + "", left + "#" + top);
                 }
 
                 //当手指释放的时候回调
@@ -142,7 +141,7 @@ public class DragerViewLayout extends RelativeLayout {
         super.onLayout(changed, l, t, r, b);
         final int count = getChildCount();
         for (int i = 0; i < count; i++) {
-            String xy = savesetting.getString(i + "", "0");
+            String xy = (String) SharedPreferencesUtil.getData(mContext, i + "", "0");
             View child = getChildAt(i);
             if (!xy.equals("0")) {
                 String[] xys = xy.split("#");
@@ -151,5 +150,25 @@ public class DragerViewLayout extends RelativeLayout {
                 }
             }
         }
+    }
+
+    /**
+     * 设置存储视图位置文件的路径和文件名字
+     *
+     * @param path
+     * @param name
+     */
+    public void setFilePathAndName(String path, String name) {
+        SharedPreferencesUtil.FILE_PATH = path;
+        SharedPreferencesUtil.FILE_NAME = name;
+    }
+
+    /**
+     * 设置视图是否可以拖拽
+     *
+     * @param flag
+     */
+    public void isDrager(boolean flag) {
+        this.drager = flag;
     }
 }
