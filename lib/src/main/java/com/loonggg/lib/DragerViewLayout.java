@@ -25,6 +25,7 @@ public class DragerViewLayout extends RelativeLayout {
             viewDragHelper = ViewDragHelper.create(this, 1.0f, new ViewDragHelper.Callback() {
                 @Override
                 public boolean tryCaptureView(View child, int pointerId) {
+                    //让视图回到顶层
                     child.bringToFront();
                     return true;
                 }
