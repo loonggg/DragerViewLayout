@@ -1,10 +1,8 @@
 package com.loonggg.lib;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -27,6 +25,7 @@ public class DragerViewLayout extends RelativeLayout {
             viewDragHelper = ViewDragHelper.create(this, 1.0f, new ViewDragHelper.Callback() {
                 @Override
                 public boolean tryCaptureView(View child, int pointerId) {
+                    child.bringToFront();
                     return true;
                 }
 
@@ -68,7 +67,7 @@ public class DragerViewLayout extends RelativeLayout {
                 @Override
                 public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
                     super.onViewPositionChanged(changedView, left, top, dx, dy);
-                    SharedPreferencesUtil.saveData(mContext, getChildIndex(changedView) + "", left + "#" + top);
+                    SharedPreferencesUtil.saveData(mContext,(String) changedView.getTag(), left + "#" + top);
                 }
 
                 //当手指释放的时候回调
@@ -119,30 +118,13 @@ public class DragerViewLayout extends RelativeLayout {
         }
     }
 
-    /**
-     * 查询正在拖动的视图所在父容器的索引位置
-     *
-     * @param srcView
-     * @return
-     */
-    private int getChildIndex(View srcView) {
-        int count = getChildCount();
-        for (int i = 0; i < count; i++) {
-            View view = getChildAt(i);
-            if (srcView == view) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
         final int count = getChildCount();
         for (int i = 0; i < count; i++) {
-            String xy = (String) SharedPreferencesUtil.getData(mContext, i + "", "0");
             View child = getChildAt(i);
+            String xy = (String) SharedPreferencesUtil.getData(mContext, (String) child.getTag(), "0");
             if (!xy.equals("0")) {
                 String[] xys = xy.split("#");
                 if (xys.length == 2) {

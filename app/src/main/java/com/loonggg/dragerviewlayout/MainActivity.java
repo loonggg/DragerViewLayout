@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.loonggg.lib.DragerViewLayout;
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btn = (TextView) findViewById(R.id.btn);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,150);
+        btn.setLayoutParams(params);
         drager_layout = (DragerViewLayout) findViewById(R.id.drager_layout);
         drager_layout.isDrager(true);
         drager_layout.setFilePathAndName(Environment.getExternalStorageDirectory().getPath() + "/loonggg", "weds");

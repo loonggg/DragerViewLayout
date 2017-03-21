@@ -7,10 +7,12 @@
 
     <TextView
         android:id="@+id/btn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#654321"
+        android:gravity="center"
         android:padding="10dp"
+        android:tag="one"
         android:text="我是炸弹"
         android:textColor="#ffffff" />
 
@@ -19,7 +21,8 @@
         android:name="com.loonggg.dragerviewlayout.OneFragment"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_below="@+id/btn" />
+        android:layout_below="@+id/btn"
+        android:tag="two" />
 
     <fragment
         android:id="@+id/three"
@@ -27,11 +30,13 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_below="@+id/btn"
-        android:layout_toRightOf="@id/one" />
+        android:layout_toRightOf="@id/one"
+        android:tag="three" />
 
     <fragment
         android:name="com.loonggg.dragerviewlayout.TwoFragment"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:layout_below="@id/one" />
+        android:layout_below="@id/one"
+        android:tag="four" />
 </com.loonggg.lib.DragerViewLayout>
