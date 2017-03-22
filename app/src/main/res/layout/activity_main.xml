@@ -13,7 +13,7 @@
         android:gravity="center"
         android:padding="10dp"
         android:tag="one"
-        android:text="我是炸弹"
+        android:text="可点击按钮"
         android:textColor="#ffffff" />
 
     <fragment
