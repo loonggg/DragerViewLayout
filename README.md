@@ -5,6 +5,7 @@
 最近有一个项目，有一个主界面，界面上有很多控件或者有多个fragment组成，大小不一，而且由于用户需要，需要自由拖动和自由组合，形成用户自己需要的组合成的模样。所以写了一个 DragerViewLayout ，只要在 DragerViewLayout 下，写入了多个视图，就可以自由拖动和组合了。DragerViewLayout 本质上是一个相对布局，所以初始位置都可以自己按相对布局的方式来定义，然后用户手动拖动后，会自动记录每个子视图的位置，进行保存，等到重新加载后，会按照记录的位置进行布局。
 
 ## 效果图
+![](https://raw.githubusercontent.com/loonggg/DragerViewLayout/master/img/ddd.gif)
 ![](https://raw.githubusercontent.com/loonggg/DragerViewLayout/master/img/sss.gif)
 
 ## 使用方法
