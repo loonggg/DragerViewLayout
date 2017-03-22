@@ -1,14 +1,21 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.weds.dragerview.OneFragment">
+    android:background="#00f"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@mipmap/acatar" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#00f"
-        android:textColor="#ffffff"
-        android:text="您好，这里是绿巨人的领地" />
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="我是一个Fragment，里面包含了我的头像"
+        android:textColor="#ffffff" />
 
-</FrameLayout>
+</LinearLayout>
